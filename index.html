@@ -506,30 +506,65 @@
         }
 
         .project-card {
-            background: var(--bg-card);
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
             border-radius: 20px;
             overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s ease;
             max-width: 450px;
             width: 100%;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            transform: translateY(40px);
+            animation: fadeUp 1s ease forwards;
+        }
+
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .project-card:hover {
-            border-color: #d4af37;
             transform: translateY(-10px);
-            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+            box-shadow: 0 20px 40px rgba(255, 215, 0, 0.2);
         }
 
         .project-image {
-            height: 200px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            height: 220px;
+            overflow: hidden;
+            border-radius: 15px 15px 0 0;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .project-card:hover .project-image img {
+            transform: scale(1.1);
+        }
+
+        .center-icon {
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 4rem;
-            color: rgba(0, 0, 0, 0.3);
+            font-size: 50px;
+            color: gold;
+        }
+
+        .badge {
+            background: gold;
+            color: black;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            margin-bottom: 10px;
+            display: inline-block;
         }
 
         .project-info {
@@ -580,9 +615,37 @@
             color: #000;
         }
 
-        .project-links .github-btn {
-            border: 1px solid var(--text-muted);
-            color: var(--text);
+        .github-btn {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 18px;
+            border: 1px solid #d4af37;
+            border-radius: 8px;
+            color: #d4af37;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .github-btn:hover {
+            background: #d4af37;
+            color: black;
+        }
+
+        .view-btn {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 15px;
+            border: 1px solid #d4af37;
+            border-radius: 6px;
+            color: #d4af37;
+            text-decoration: none;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .view-btn:hover {
+            background: #d4af37;
+            color: black;
         }
 
         .project-links a:hover {
@@ -726,6 +789,84 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        /* Education, Experience & Certifications Section */
+        .education-container,
+        .experience-container,
+        .certifications-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .edu-card,
+        .card {
+            background: #111;
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid #222;
+            transition: 0.3s;
+        }
+
+        .edu-card:hover,
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: #d4af37;
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
+        }
+
+        .edu-card h3,
+        .card h3 {
+            color: #d4af37;
+            margin-bottom: 5px;
+        }
+
+        .edu-card span,
+        .card span {
+            color: #aaa;
+            font-size: 14px;
+        }
+
+        .cert-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        .cert-card {
+            background: #111;
+            border-radius: 12px;
+            overflow: hidden;
+            width: 320px;
+            border: 1px solid #222;
+            transition: 0.3s;
+        }
+
+        .cert-card:hover {
+            transform: translateY(-8px);
+            border-color: #d4af37;
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
+        }
+
+        .cert-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: contain;
+            background: #000;
+            padding: 10px;
+        }
+
+        .cert-info {
+            padding: 15px;
+        }
+
+        .cert-info h3 {
+            color: #d4af37;
+        }
+
+        .cert-info span {
+            color: #aaa;
+            font-size: 14px;
+        }
     </style>
 </head>
 
@@ -735,12 +876,11 @@
 
     <!-- Navbar -->
     <nav>
-        <h2>Shoubiya.M</h2>
+        <h2>Shoubiya</h2>
         <div class="nav-links">
-            <a href="#about">About</a>
+            <a href="#education">Education</a>
             <a href="#skills">Skills</a>
             <a href="#projects">Projects</a>
-            <a href="#contact">Contact</a>
         </div>
     </nav>
 
@@ -758,8 +898,8 @@
             </p>
 
             <div class="hero-buttons">
-                <a href="resume.pdf" download class="btn">
-                    <i class="fas fa-download"></i> Download CV
+                <a href="https://shoubiyanasar-png.github.io/portfolio/resume.pdf" target="_blank">
+                    <button class="btn">Download Resume</button>
                 </a>
                 <a href="#contact" class="btn-secondary">Let's Talk</a>
             </div>
@@ -821,6 +961,118 @@
         </div>
     </section>
 
+    <!-- Education Section -->
+    <section id="education">
+        <div class="section-title">
+            <h2>My <span>Education</span></h2>
+            <p>Academic Background</p>
+        </div>
+
+        <div class="education-container">
+
+            <div class="edu-card">
+                <h3>MCA (Master of Computer Applications)</h3>
+                <p>Christ College of Engineering and Technology</p>
+                <span>2024 – 2026 (Pursuing)</span>
+            </div>
+
+            <div class="edu-card">
+                <h3>B.Ed</h3>
+                <p>Senthil College of Education</p>
+                <span>2021 – 2023</span>
+            </div>
+
+            <div class="edu-card">
+                <h3>BCA (Bachelor of Computer Applications)</h3>
+                <p>Aiman College of Arts and Science for Women</p>
+                <span>2014 – 2017</span>
+            </div>
+
+            <div class="edu-card">
+                <h3>Higher Secondary (12th)</h3>
+                <p>Tagore Matric Higher Secondary School</p>
+                <span>2014</span>
+            </div>
+
+            <div class="edu-card">
+                <h3>SSLC (10th)</h3>
+                <p>Tagore Matric Higher Secondary School</p>
+                <span>2012</span>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <div class="section-title">
+            <h2>My <span>Experience</span></h2>
+            <p>Professional Journey</p>
+        </div>
+
+        <div class="experience-container">
+            <div class="card">
+                <h3>Self Learning & Project Development</h3>
+                <p>Worked on backend and machine learning projects using Python. Built real-world applications like
+                    Heart Disease Prediction system.</p>
+                <span>2024 – Present</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section id="certifications">
+        <div class="section-title">
+            <h2>My <span>Certifications</span></h2>
+            <p>Additional Qualifications</p>
+        </div>
+
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="images/nptel.jpg" alt="NPTEL Certificate">
+                </div>
+
+                <div class="project-info">
+                    <span class="badge">Certified</span>
+                    <h3>NPTEL Certification</h3>
+                    <p>Completed NPTEL course successfully</p>
+
+                    <a href="https://shoubiyanasar-png.github.io/portfolio/nptel.pdf" target="_blank">
+                        <button class="btn">View Certificate</button>
+                    </a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="images/typing.jpeg" alt="Typing Certificate">
+                </div>
+
+                <div class="project-info">
+                    <span class="badge">Certified</span>
+                    <h3>Typing Certification</h3>
+                    <p>Junior Grade Typewriting English (30 WPM) - First Class</p>
+
+                    <a href="https://shoubiyanasar-png.github.io/portfolio/typing.jpeg" target="_blank">
+                        <button class="btn">View Certificate</button>
+                    </a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-image center-icon">
+                    <i class="fas fa-certificate"></i>
+                </div>
+                <div class="project-info">
+                    <span class="badge">Certified</span>
+                    <h3>Other Certifications</h3>
+                    <p>✔ Digital Literacy in Computers</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Skills Section -->
     <section id="skills">
         <div class="section-title">
@@ -829,81 +1081,12 @@
         </div>
 
         <div class="skills-container">
-            <div class="skill-category">
-                <h3><i class="fas fa-code"></i> Programming</h3>
-                <div class="skill-item">
-                    <div class="skill-info">
-                        <span>Python</span>
-                        <span>90%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-progress" style="width: 90%;"></div>
-                    </div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-info">
-                        <span>SQL</span>
-                        <span>85%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-progress" style="width: 85%;"></div>
-                    </div>
-                </div>
+            <div class="card">
+                <p style="margin-bottom: 10px;"><strong>Languages:</strong> Python, SQL</p>
+                <p style="margin-bottom: 10px;"><strong>Frameworks:</strong> Flask</p>
+                <p style="margin-bottom: 10px;"><strong>Tools:</strong> Git, GitHub, Excel</p>
+                <p><strong>Concepts:</strong> Machine Learning, Data Analysis</p>
             </div>
-
-            <div class="skill-category">
-                <h3><i class="fas fa-server"></i> Backend & Frameworks</h3>
-                <div class="skill-item">
-                    <div class="skill-info">
-                        <span>Flask</span>
-                        <span>80%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-progress" style="width: 80%;"></div>
-                    </div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-info">
-                        <span>REST APIs</span>
-                        <span>75%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-progress" style="width: 75%;"></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="skill-category">
-                <h3><i class="fas fa-brain"></i> Machine Learning</h3>
-                <div class="skill-item">
-                    <div class="skill-info">
-                        <span>Scikit-Learn</span>
-                        <span>80%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-progress" style="width: 80%;"></div>
-                    </div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-info">
-                        <span>Pandas & NumPy</span>
-                        <span>85%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-progress" style="width: 85%;"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="tech-stack">
-            <div class="skill"><i class="fab fa-python"></i> Python</div>
-            <div class="skill"><i class="fas fa-database"></i> SQL</div>
-            <div class="skill"><i class="fas fa-flask"></i> Flask</div>
-            <div class="skill"><i class="fab fa-github"></i> GitHub</div>
-            <div class="skill"><i class="fas fa-robot"></i> Machine Learning</div>
-            <div class="skill"><i class="fas fa-file-excel"></i> Excel</div>
-            <div class="skill"><i class="fas fa-chart-line"></i> Data Analysis</div>
         </div>
     </section>
 
@@ -934,22 +1117,6 @@
                             class="github-btn">
                             <i class="fab fa-github"></i> GitHub
                         </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Student Management API Project -->
-            <div class="project-card">
-                <div class="project-image">
-                    <i class="fas fa-database"></i>
-                </div>
-                <div class="project-info">
-                    <h3>Student Management API</h3>
-                    <p>Built a REST API using Flask to manage student data with CRUD operations.</p>
-                    <div class="project-tags">
-                        <span>Python</span>
-                        <span>Flask</span>
-                        <span>API</span>
                     </div>
                 </div>
             </div>
@@ -1006,18 +1173,7 @@
 
     <!-- Footer -->
     <footer>
-        <div class="social-links">
-            <a href="https://github.com/shoubiyanasar-png" target="_blank">
-                <i class="fab fa-github"></i>
-            </a>
-            <a href="https://www.linkedin.com/in/shoubiya-nasar" target="_blank">
-                <i class="fab fa-linkedin-in"></i>
-            </a>
-            <a href="mailto:shoubiyanasar@gmail.com">
-                <i class="fas fa-envelope"></i>
-            </a>
-        </div>
-        <p>© 2026 Shoubiya Nasar. All Rights Reserved.</p>
+        <p>© 2026 Shoubiya Nasar | Backend Developer</p>
     </footer>
 
     <div class="scroll-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
